@@ -171,7 +171,7 @@ var reportSettings = {
     }
 }
 
-$("<button type='button'><span class='k-icon k-i-custom' /> Report settings</button>")
+$("<button type='button'><span class='k-font-icon k-i-rows' /> Report settings</button>")
     .css({
         position: "absolute",
         zIndex: 10000,
@@ -215,11 +215,14 @@ var sendReport = {
         }
 
         for (var key in this.groups) {
-            console.log(key + " : " + this.groups[key]);
+            report = report + key + " : " + this.groups[key] + "</br>";
         }
+
+        radalert(report, 500, null, "Report");
 
         this.groups = {};
         this.tickets = [];
+        this.products = [];
     },
 
     tomorrow10am: function () {
@@ -240,7 +243,6 @@ var sendReport = {
 
         this.tickets = this.tickets.filter(function(item) {
             var hours = item.dueTime;
-
             return parseInt(hours, 10) < hoursUntilTomorrow;
         });
     },
@@ -277,7 +279,7 @@ var sendReport = {
 };
 
 
-$("<button type='button'><span class='k-font-icon k-i-custom' /> Generate Report</button>")
+$("<button type='button'><span class='k-font-icon k-i-print' /> Generate Report</button>")
     .css({
         position: "absolute",
         zIndex: 10000,
